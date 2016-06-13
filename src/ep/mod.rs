@@ -1,4 +1,3 @@
-extern crate error;
 extern crate uuid;
 
 use error::Error;
