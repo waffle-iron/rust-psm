@@ -13,6 +13,7 @@ pub fn close(fd: c_int) -> c_int {
 }
 
 #[test]
+// Check open/close on a file that should exist in most linux based OS.
 fn open_close_devnull() -> () {
   let fd = open("/dev/null", libc::O_RDONLY);
   assert!(fd >= 0);
