@@ -1,3 +1,5 @@
+//! Datatypes and functions related to Ep (endpoints) aka psm_ep_t,
+//! (for now) EpAddr aka psm_epaddr_t, and Epid aka psm_epid_t.
 extern crate uuid;
 
 use error::Error;

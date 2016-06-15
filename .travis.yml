@@ -4,3 +4,4 @@ env:
     - LD_LIBRARY_PATH: /usr/local/lib
 script:
   - cargo build
+  - cargo test

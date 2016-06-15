@@ -1,3 +1,4 @@
+//! Contains the different error codes that were in psm.h in the C version.
 pub enum Error {
     Ok,
     NoProgress,
