@@ -24,8 +24,12 @@ pub fn errno() -> c_int {
   unsafe { *libc::__errno_location() }
 }
 
+#[macro_export]
 macro_rules! dump_errno_str {
-  () => (format!("errno: {}, errno str {}", errno(), strerror(errno())))
+  () => {{
+    use $crate::errno;
+    format!("errno: {}, errno str {}", errno(), strerror(errno()))
+  }}
 }
 
 #[test]
