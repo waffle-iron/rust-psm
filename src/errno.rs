@@ -1,3 +1,9 @@
+//! Provides an easier way to access the linux driver error functions
+//! such as errno and strerror. This module is needed because many C functions
+//! set serrno in the case of failures. Since PSM needs to use the /dev/ipath
+//! character file, errno gets set anytime the ib_qib driver encounters a
+//! problem.
+
 #![macro_use]
 
 extern crate libc;
@@ -23,7 +29,7 @@ macro_rules! dump_errno_str {
 }
 
 #[test]
-/// Forcing EISDIR by setting O_WRONLY on /tmp
+// Forcing EISDIR by setting O_WRONLY on /tmp
 fn errno_e_is_dir() {
   let fd = open("/tmp", libc::O_WRONLY);
   assert_eq!(errno(), libc::EISDIR);

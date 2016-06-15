@@ -1,3 +1,8 @@
+//! Contains operations related to the /dev/ipath character files.
+//! fcntl is not included because rust does not allow for the C-style
+//! argument list (...) outside of ffi functions. fcntl is only used once
+//! in the C version.
+
 extern crate libc;
 
 use std::ffi::CString;
