@@ -7,21 +7,44 @@ extern crate libc;
 
 use std::ffi::CString;
 use libc::c_int;
+use std::os::unix::io::{RawFd, AsRawFd};
+use std::ops::Drop;
 
-pub fn open<T: Into<String>>(path: T, mode: c_int) -> c_int {
-  unsafe { libc::open(CString::new(path.into())
-                      .unwrap_or(CString::new("").unwrap()).as_ptr(), mode) }
+pub struct Fd(RawFd);
+
+impl Fd {
+  pub fn open<T: Into<String>>(path: T, mode: c_int) -> Option<Fd> {
+    let fd = unsafe { libc::open(CString::new(path.into())
+                .unwrap_or(CString::new("").unwrap()).as_ptr(), mode) };
+    match fd {
+      -1 => None,
+      _ => Some(Fd(fd))
+    }
+  }
+
+  fn close(&mut self) -> c_int {
+    unsafe { libc::close(self.0) }
+  }
 }
 
-pub fn close(fd: c_int) -> c_int {
-  unsafe { libc::close(fd) }
+impl AsRawFd for Fd {
+  fn as_raw_fd(&self) -> RawFd {
+    self.0
+  }
+}
+
+impl Drop for Fd {
+  // XXX: Do we need to check result of close?
+  fn drop(&mut self) {
+    if self.0 != -1 {
+      self.close();
+    }
+  }
 }
 
 #[test]
 // Check open/close on a file that should exist in most linux based OS.
 fn open_close_devnull() -> () {
-  let fd = open("/dev/null", libc::O_RDONLY);
-  assert!(fd >= 0);
-  let ret = close(fd);
-  assert!(ret != -1);
+  let fd = Fd::open("/dev/null", libc::O_RDONLY);
+  assert!(fd.is_some());
 }
