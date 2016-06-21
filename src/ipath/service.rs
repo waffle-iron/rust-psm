@@ -19,12 +19,10 @@ fn ipath_context_open(unit: isize) -> Option<Fd> {
   let fd_maybe = Fd::open(dev_path, libc::O_RDWR);
   match fd_maybe {
     Some(fd) => {
-      unsafe {
-        if libc::fcntl(fd.as_raw_fd(), libc::F_SETFD, libc::FD_CLOEXEC) >= 0 {
-          Some(fd)
-        } else {
-          None
-        }
+      if fd.fcntl(libc::F_SETFD, libc::FD_CLOEXEC).is_some() {
+        Some(fd)
+      } else {
+        None
       }
     },
     None => None

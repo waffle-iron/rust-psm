@@ -22,8 +22,16 @@ impl Fd {
     }
   }
 
-  fn close(&mut self) -> c_int {
+  fn close(&self) -> c_int {
     unsafe { libc::close(self.0) }
+  }
+
+  pub fn fcntl(&self, cmd: c_int, arg: c_int ) -> Option<c_int> {
+    let ret = unsafe { libc::fcntl(self.0, cmd, arg) };
+    match ret {
+      -1 => None,
+      _ => Some(0)
+    }
   }
 }
 
