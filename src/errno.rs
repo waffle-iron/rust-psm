@@ -12,7 +12,7 @@ use std::ffi::CString;
 use std::ffi::CStr;
 use std::os::raw::c_char;
 use libc::c_int;
-use fileops::open;
+use fileops::Fd;
 
 pub fn strerror(errno: c_int) -> String {
   unsafe {
@@ -35,7 +35,7 @@ macro_rules! dump_errno_str {
 #[test]
 // Forcing EISDIR by setting O_WRONLY on /tmp
 fn errno_e_is_dir() {
-  let fd = open("/tmp", libc::O_WRONLY);
+  let fd = Fd::open("/tmp", libc::O_WRONLY);
   assert_eq!(errno(), libc::EISDIR);
   assert_eq!(strerror(errno()), "Is a directory");
 }
