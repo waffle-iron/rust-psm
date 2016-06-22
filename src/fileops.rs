@@ -1,7 +1,4 @@
 //! Contains operations related to the /dev/ipath character files.
-//! fcntl is not included because rust does not allow for the C-style
-//! argument list (...) outside of ffi functions. fcntl is only used once
-//! in the C version.
 
 extern crate libc;
 
@@ -26,9 +23,8 @@ impl Fd {
     unsafe { libc::close(self.0) }
   }
 
-  pub fn fcntl(&self, cmd: c_int, arg: c_int ) -> Option<c_int> {
-    let ret = unsafe { libc::fcntl(self.0, cmd, arg) };
-    match ret {
+  pub fn try_set_flag(&self, flag: c_int ) -> Option<c_int> {
+    match unsafe { libc::fcntl(self.0, libc::F_SETFD, flag) } {
       -1 => None,
       _ => Some(0)
     }

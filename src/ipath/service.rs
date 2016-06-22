@@ -14,19 +14,17 @@ fn ipath_context_open(unit: isize) -> Option<Fd> {
 
   // XXX: Do we need ipath_wait_for_device? it literally just waits.
 
-  // open and fcntl return -1 and set errno in the case of an error
-  // the fd here is the result, but we need to check fcntl's result
+  // Try to get a Fd and try to set the CLOEXEC flag on it.
   let fd_maybe = Fd::open(dev_path, libc::O_RDWR);
   match fd_maybe {
-    Some(fd) => {
-      if fd.fcntl(libc::F_SETFD, libc::FD_CLOEXEC).is_some() {
-        Some(fd)
-      } else {
-        None
+    Some(ref fd) => {
+      if fd.try_set_flag(libc::FD_CLOEXEC).is_none() {
+        println!("{}", dump_errno_str!());
       }
     },
-    None => None
+    _ => ()
   }
+  fd_maybe
 }
 
 #[test]
