@@ -7,7 +7,6 @@ use libc::c_int;
 use std::os::unix::io::{RawFd, AsRawFd};
 use std::ops::Drop;
 use std::io::Error;
-use std::error::Error as std_error;
 
 pub struct Fd(RawFd);
 
@@ -51,7 +50,8 @@ impl Drop for Fd {
 
 #[test]
 // Check open/close on a file that should exist in most linux based OS.
-fn open_close_devnull() -> () {
+fn open_close_devnull() {
+  use std::error::Error as std_error;
   match Fd::open("/dev/null", libc::O_RDONLY) {
     Err(e) => panic!(e.description().to_owned()),
     _ => ()

@@ -13,8 +13,6 @@ pub mod ptl_ips;
 pub mod ptl_self;
 
 use error::Error;
-use ep::*;
-use std::result;
 
 pub struct Version {
   major: usize,

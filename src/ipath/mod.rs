@@ -2,3 +2,4 @@
 //! Mostly support functions and functions to interface with the ib_qib driver
 //! will live in this module.
 pub mod service;
+pub mod sysfs;
