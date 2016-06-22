@@ -6,16 +6,18 @@ use std::ffi::CString;
 use libc::c_int;
 use std::os::unix::io::{RawFd, AsRawFd};
 use std::ops::Drop;
+use std::io::Error;
+use std::error::Error as std_error;
 
 pub struct Fd(RawFd);
 
 impl Fd {
-  pub fn open<T: Into<String>>(path: T, mode: c_int) -> Option<Fd> {
+  pub fn open<T: Into<String>>(path: T, mode: c_int) -> Result<Fd, Error> {
     let fd = unsafe { libc::open(CString::new(path.into())
                 .unwrap_or(CString::new("").unwrap()).as_ptr(), mode) };
     match fd {
-      -1 => None,
-      _ => Some(Fd(fd))
+      -1 => Err(Error::last_os_error()),
+      _ => Ok(Fd(fd))
     }
   }
 
@@ -23,10 +25,11 @@ impl Fd {
     unsafe { libc::close(self.0) }
   }
 
-  pub fn try_set_flag(&self, flag: c_int ) -> Option<c_int> {
+  // With F_SETFD we only care if fcntl failed
+  pub fn try_set_flag(&self, flag: c_int ) -> Result<c_int, Error> {
     match unsafe { libc::fcntl(self.0, libc::F_SETFD, flag) } {
-      -1 => None,
-      _ => Some(0)
+      -1 => Err(Error::last_os_error()),
+      ret @ _ => Ok(ret)
     }
   }
 }
@@ -49,6 +52,8 @@ impl Drop for Fd {
 #[test]
 // Check open/close on a file that should exist in most linux based OS.
 fn open_close_devnull() -> () {
-  let fd = Fd::open("/dev/null", libc::O_RDONLY);
-  assert!(fd.is_some());
+  match Fd::open("/dev/null", libc::O_RDONLY) {
+    Err(e) => panic!(e.description().to_owned()),
+    _ => ()
+  }
 }
