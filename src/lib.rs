@@ -5,7 +5,6 @@ extern crate libc;
 extern crate uuid;
 
 pub mod error;
-pub mod errno;
 pub mod fileops;
 pub mod ep;
 pub mod ipath;
