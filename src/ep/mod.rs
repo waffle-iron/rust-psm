@@ -4,7 +4,6 @@ extern crate uuid;
 
 use error::Error;
 use self::consts::*;
-use self::macros::*;
 use uuid::Uuid;
 
 pub mod consts;

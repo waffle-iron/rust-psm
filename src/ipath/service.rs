@@ -1,9 +1,7 @@
 extern crate libc;
 
-use std::ffi::CString;
 use fileops::Fd;
 use std::io::Error;
-use std::error::Error as std_error;
 
 fn ipath_context_open(unit: isize) -> Result<Fd, Error> {
   let dev_path = if unit >= 0 {
@@ -26,6 +24,7 @@ fn ipath_context_open(unit: isize) -> Result<Fd, Error> {
 #[ignore]
 // TODO: add a test for checking all available units
 fn open_close_unit_zero() {
+  use std::error::Error as std_error;
   match ipath_context_open(0) {
     Err(e) => panic!(e.description().to_owned()),
     _ => ()
