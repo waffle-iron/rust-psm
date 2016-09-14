@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["read_port_attr","Reads attributes from /sys/class/infiniband/qib[0-9]/ports/[0-1]/*"],["read_unit_attr","Reads attributes from /sys/class/infiniband/qib[0-9]/*"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["service",""],["sysfs","Allows for reading of ib_qib attributes from sysfs files. Examples include number of free contexts and InfiniBand GIDS."]]});

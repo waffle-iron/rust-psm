@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Error` enum in crate `rust_psm`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Error">
+
+    <title>rust_psm::error::Error - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>rust_psm</a>::<wbr><a href='index.html'>error</a></p><script>window.sidebarCurrent = {name: 'Error', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>rust_psm</a>::<wbr><a href='index.html'>error</a>::<wbr><a class='enum' href=''>Error</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-7' class='srclink' href='../../src/rust_psm/src/error.rs.html#2-40' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum Error {
+    Ok,
+    NoProgress,
+    ParamError,
+    NoMemory,
+    NotIinitalized,
+    BadApiVersion,
+    NoAffinity,
+    InternalError,
+    ShmemSegmentError,
+    OptReadOnly,
+    Timeout,
+    TooManyEps,
+    Finalized,
+    EpClosed,
+    NoDevice,
+    UnitNotFound,
+    DeviceFailure,
+    CloseTimeout,
+    NoPortsAvailable,
+    NoNetwork,
+    InvalidUuidKey,
+    EpNoResources,
+    UnkownEpid,
+    UnreachableEpid,
+    InvalidNode,
+    InvalidMtu,
+    InvalidVersion,
+    InvalidConnect,
+    AlreadyConnected,
+    NetworkError,
+    InvalidPkey,
+    EpidPathResolution,
+    MqNoCompletions,
+    MqTruncation,
+    AmInvalidReply,
+    AlreadyInitialized,
+    UnknownError,
+}</pre><h2 class='variants'>Variants</h2>
+<span id='variant.Ok' class='variant'><span id='Ok.v' class='invisible'><code>Ok</code></span></span><span id='variant.NoProgress' class='variant'><span id='NoProgress.v' class='invisible'><code>NoProgress</code></span></span><span id='variant.ParamError' class='variant'><span id='ParamError.v' class='invisible'><code>ParamError</code></span></span><span id='variant.NoMemory' class='variant'><span id='NoMemory.v' class='invisible'><code>NoMemory</code></span></span><span id='variant.NotIinitalized' class='variant'><span id='NotIinitalized.v' class='invisible'><code>NotIinitalized</code></span></span><span id='variant.BadApiVersion' class='variant'><span id='BadApiVersion.v' class='invisible'><code>BadApiVersion</code></span></span><span id='variant.NoAffinity' class='variant'><span id='NoAffinity.v' class='invisible'><code>NoAffinity</code></span></span><span id='variant.InternalError' class='variant'><span id='InternalError.v' class='invisible'><code>InternalError</code></span></span><span id='variant.ShmemSegmentError' class='variant'><span id='ShmemSegmentError.v' class='invisible'><code>ShmemSegmentError</code></span></span><span id='variant.OptReadOnly' class='variant'><span id='OptReadOnly.v' class='invisible'><code>OptReadOnly</code></span></span><span id='variant.Timeout' class='variant'><span id='Timeout.v' class='invisible'><code>Timeout</code></span></span><span id='variant.TooManyEps' class='variant'><span id='TooManyEps.v' class='invisible'><code>TooManyEps</code></span></span><span id='variant.Finalized' class='variant'><span id='Finalized.v' class='invisible'><code>Finalized</code></span></span><span id='variant.EpClosed' class='variant'><span id='EpClosed.v' class='invisible'><code>EpClosed</code></span></span><span id='variant.NoDevice' class='variant'><span id='NoDevice.v' class='invisible'><code>NoDevice</code></span></span><span id='variant.UnitNotFound' class='variant'><span id='UnitNotFound.v' class='invisible'><code>UnitNotFound</code></span></span><span id='variant.DeviceFailure' class='variant'><span id='DeviceFailure.v' class='invisible'><code>DeviceFailure</code></span></span><span id='variant.CloseTimeout' class='variant'><span id='CloseTimeout.v' class='invisible'><code>CloseTimeout</code></span></span><span id='variant.NoPortsAvailable' class='variant'><span id='NoPortsAvailable.v' class='invisible'><code>NoPortsAvailable</code></span></span><span id='variant.NoNetwork' class='variant'><span id='NoNetwork.v' class='invisible'><code>NoNetwork</code></span></span><span id='variant.InvalidUuidKey' class='variant'><span id='InvalidUuidKey.v' class='invisible'><code>InvalidUuidKey</code></span></span><span id='variant.EpNoResources' class='variant'><span id='EpNoResources.v' class='invisible'><code>EpNoResources</code></span></span><span id='variant.UnkownEpid' class='variant'><span id='UnkownEpid.v' class='invisible'><code>UnkownEpid</code></span></span><span id='variant.UnreachableEpid' class='variant'><span id='UnreachableEpid.v' class='invisible'><code>UnreachableEpid</code></span></span><span id='variant.InvalidNode' class='variant'><span id='InvalidNode.v' class='invisible'><code>InvalidNode</code></span></span><span id='variant.InvalidMtu' class='variant'><span id='InvalidMtu.v' class='invisible'><code>InvalidMtu</code></span></span><span id='variant.InvalidVersion' class='variant'><span id='InvalidVersion.v' class='invisible'><code>InvalidVersion</code></span></span><span id='variant.InvalidConnect' class='variant'><span id='InvalidConnect.v' class='invisible'><code>InvalidConnect</code></span></span><span id='variant.AlreadyConnected' class='variant'><span id='AlreadyConnected.v' class='invisible'><code>AlreadyConnected</code></span></span><span id='variant.NetworkError' class='variant'><span id='NetworkError.v' class='invisible'><code>NetworkError</code></span></span><span id='variant.InvalidPkey' class='variant'><span id='InvalidPkey.v' class='invisible'><code>InvalidPkey</code></span></span><span id='variant.EpidPathResolution' class='variant'><span id='EpidPathResolution.v' class='invisible'><code>EpidPathResolution</code></span></span><span id='variant.MqNoCompletions' class='variant'><span id='MqNoCompletions.v' class='invisible'><code>MqNoCompletions</code></span></span><span id='variant.MqTruncation' class='variant'><span id='MqTruncation.v' class='invisible'><code>MqTruncation</code></span></span><span id='variant.AmInvalidReply' class='variant'><span id='AmInvalidReply.v' class='invisible'><code>AmInvalidReply</code></span></span><span id='variant.AlreadyInitialized' class='variant'><span id='AlreadyInitialized.v' class='invisible'><code>AlreadyInitialized</code></span></span><span id='variant.UnknownError' class='variant'><span id='UnknownError.v' class='invisible'><code>UnknownError</code></span></span></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rust_psm";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
